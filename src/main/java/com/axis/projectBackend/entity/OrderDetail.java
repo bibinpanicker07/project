@@ -1,12 +1,18 @@
 package com.axis.projectBackend.entity;
 
+
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -24,11 +30,10 @@ public class OrderDetail {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-//	 @JsonIgnore
-//	 @OneToMany(mappedBy = "orderDetail", fetch = FetchType.LAZY,
-//		cascade = CascadeType.ALL)
+	 @JsonIgnore
+	 @OneToMany(mappedBy = "orderDetail", fetch = FetchType.LAZY)
 	 private List<Cart> carts;
-
+    
 	
 	public String getOrderFullName() {
 		return orderFullName;
@@ -73,6 +78,9 @@ public class OrderDetail {
 	public void setCarts(List<Cart> carts) {
 		this.carts = carts;
 	}
+	
+
+	
 	public OrderDetail(String orderFullName, String orderFullAddress, String orderContactNumber, String orderStatus,
 			Double orderAmount, User user, List<Cart> carts) {
 		super();

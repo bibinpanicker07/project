@@ -1,6 +1,6 @@
 package com.axis.projectBackend.dto.orderdetail;
 
-import com.axis.projectBackend.dto.cart.CartDto;
+
 
 public class OrderDetailDto {
 	

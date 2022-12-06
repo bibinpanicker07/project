@@ -3,12 +3,16 @@ package com.axis.projectBackend.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 
 @Entity
@@ -32,8 +36,20 @@ public class Cart {
 
     private int quantity;
 
+//    @JsonIgnore
+//    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+//    @JoinColumn(name = "order_detail_id", nullable = true)
+//    OrderDetail orderDetail;
+//
+//    public OrderDetail getOrderDetail() {
+//		return orderDetail;
+//	}
+//
+//	public void setOrderDetail(OrderDetail orderDetail) {
+//		this.orderDetail = orderDetail;
+//	}
 
-    public Cart() {
+	public Cart() {
     }
 
     public Integer getId() {

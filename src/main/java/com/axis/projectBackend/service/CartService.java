@@ -30,17 +30,33 @@ public class CartService {
 
         // validate if the product id is valid
         Product product = productService.findById(addToCartDto.getProductId());
+        List<Cart> cartList =  cartRepository.findByUser(user);
+        int flag=0;
+        for(Cart temp:cartList) {
+        	if(temp.getProduct().getId().equals(product.getId())) {
+                temp.setQuantity(addToCartDto.getQuantity()+temp.getQuantity());
+                temp.setCreatedDate(new Date());
+                cartRepository.save(temp);		
+                flag=1;
+        	}
+        }
+        if(flag==0) {
+	        Cart cart = new Cart();
+	        cart.setProduct(product);
+	        cart.setUser(user);
+	        cart.setQuantity(addToCartDto.getQuantity());
+	        cart.setCreatedDate(new Date());
+	        // save the cart
+	        cartRepository.save(cart);
+        }
 
-        Cart cart = new Cart();
-        cart.setProduct(product);
-        cart.setUser(user);
-        cart.setQuantity(addToCartDto.getQuantity());
+    } 
+    public void updateCartItem(AddToCartDto cartDto, User user){
+    	Product product = productService.findById(cartDto.getProductId());
+        Cart cart = cartRepository.getById(cartDto.getId());
+        cart.setQuantity(cartDto.getQuantity());
         cart.setCreatedDate(new Date());
-
-
-        // save the cart
         cartRepository.save(cart);
-
     }
 
     public CartDto listCartItems(User user) {

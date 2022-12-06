@@ -1,11 +1,17 @@
 package com.axis.projectBackend.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "users")
@@ -26,6 +32,11 @@ public class User {
 
     @Column(name = "password")
     private String password;
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "user",
+            fetch = FetchType.LAZY)
+    private List<OrderDetail> orders;
 
     public Integer getId() {
         return id;
@@ -59,21 +70,37 @@ public class User {
         this.email = email;
     }
 
-    public String getPasswoprd() {
-        return password;
-    }
+    public String getPassword() {
+		return password;
+	}
 
-    public void setPasswoprd(String passwoprd) {
-        this.password = passwoprd;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public User(String firstName, String lastName, String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-    }
+	public List<OrderDetail> getOrders() {
+		return orders;
+	}
 
-    public User() {
+	public void setOrders(List<OrderDetail> orders) {
+		this.orders = orders;
+	}
+
+	public User(String firstName, String lastName, String email, String password) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+	}
+	public User(String firstName, String lastName, String email, String password, List<OrderDetail> orders) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.orders = orders;
+	}
+	public User() {
     }
 }

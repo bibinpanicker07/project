@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.axis.projectBackend.dto.cart.CartDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -33,8 +34,15 @@ public class OrderDetail {
 	 @JsonIgnore
 	 @OneToMany(mappedBy = "orderDetail", fetch = FetchType.LAZY)
 	 private List<Cart> carts;
-    
-	
+
+
+	public OrderDetail() {
+		super();
+	}
+	public OrderDetail(User user) {
+		super();
+		this.user=user;
+	}
 	public String getOrderFullName() {
 		return orderFullName;
 	}
@@ -92,6 +100,9 @@ public class OrderDetail {
 		this.user = user;
 		this.carts = carts;
 	}
+
+
+
 
 	
 

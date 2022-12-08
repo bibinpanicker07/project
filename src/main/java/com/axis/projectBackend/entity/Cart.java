@@ -38,7 +38,7 @@ public class Cart {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
-    @JoinColumn(name = "order_detail_id", nullable = true)
+    @JoinColumn(name = "order_detail_id", unique= true, nullable=true, insertable=true, updatable=true)
     OrderDetail orderDetail;
 
     public OrderDetail getOrderDetail() {

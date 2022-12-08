@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.axis.projectBackend.dto.user.*;
 import com.axis.projectBackend.entity.AuthenticationToken;
+import com.axis.projectBackend.entity.OrderDetail;
 import com.axis.projectBackend.entity.User;
 import com.axis.projectBackend.exceptions.AuthenticationFailException;
 import com.axis.projectBackend.exceptions.CustomException;
+import com.axis.projectBackend.repository.OrderDetailRepository;
 import com.axis.projectBackend.repository.UserRepository;
 
 import javax.transaction.Transactional;
@@ -27,6 +29,9 @@ public class UserService {
 
     @Autowired
     AuthenticationService authenticationService;
+    
+    @Autowired
+    OrderDetailRepository orderDetailRepository;
 
     @Transactional
     public ResponseEntity<String> signUp(SignupDto signupDto) {
@@ -59,6 +64,11 @@ public class UserService {
         final AuthenticationToken authenticationToken = new AuthenticationToken(user);
 
         authenticationService.saveConfirmationToken(authenticationToken);
+        
+        //create empty order for user
+        OrderDetail orderDetail = new OrderDetail(user);
+        orderDetailRepository.save(orderDetail);
+        
         
         return  new ResponseEntity<String>("user created succesfully",HttpStatus.CREATED);
     }

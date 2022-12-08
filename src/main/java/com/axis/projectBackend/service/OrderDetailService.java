@@ -30,8 +30,9 @@ public class OrderDetailService {
 				cartService.listCartItems(user).getTotalCost(),
 				user,
 				cartService.cartRepository.findAllByUserOrderByCreatedDateDesc(user));
+		
 		orderDetailRepository.save(orderDetail);
-		//cartService.cartRepository.deleteAllByUser(user);		
+		cartService.cartRepository.deleteAllByUser(user);		
 	}
 	
 	

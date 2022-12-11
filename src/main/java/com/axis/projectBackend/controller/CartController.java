@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ import com.axis.projectBackend.service.CartService;
 
 @RestController
 @RequestMapping("/cart")
+@CrossOrigin("http://localhost:3000")
 public class CartController {
 
     @Autowired
@@ -69,7 +71,7 @@ public class CartController {
     }
     
     
-    @PutMapping("/update/{cartItemId}")
+    @PutMapping("/update/")
     public ResponseEntity<String> updateCartItem(@RequestBody @Valid AddToCartDto cartDto,
                                                       @RequestParam("token") String token) throws AuthenticationFailException,ProductNotExistsException {
         authenticationService.authenticate(token);
@@ -78,16 +80,7 @@ public class CartController {
         return new ResponseEntity<>("Product has been updated", HttpStatus.OK);
     }
     
-    
-    
-    
-    
-
-    
-    
-    
-    
-
+   
     // delete a cart item for a user
 
     @DeleteMapping("/delete/{cartItemId}")

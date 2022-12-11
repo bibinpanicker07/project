@@ -52,11 +52,17 @@ public class CartService {
 
     } 
     public void updateCartItem(AddToCartDto cartDto, User user){
-    	Product product = productService.findById(cartDto.getProductId());
+    	//Product product = productService.findById(cartDto.getProductId());
         Cart cart = cartRepository.getById(cartDto.getId());
-        cart.setQuantity(cartDto.getQuantity());
-        cart.setCreatedDate(new Date());
-        cartRepository.save(cart);
+        if(cartDto.getQuantity() > 0) {
+        	
+        	cart.setQuantity(cartDto.getQuantity());
+            cart.setCreatedDate(new Date());
+            cartRepository.save(cart);
+        }
+        else {
+        	cartRepository.delete(cart);
+        }
     }
 
     public CartDto listCartItems(User user) {

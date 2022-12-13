@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
 
 import com.axis.projectBackend.dto.cart.CartDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;

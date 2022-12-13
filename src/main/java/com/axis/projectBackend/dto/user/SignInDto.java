@@ -1,8 +1,10 @@
 package com.axis.projectBackend.dto.user;
 
+import javax.validation.constraints.NotBlank;
+
 public class SignInDto {
-    private String email;
-    private String password;
+    private  String email;
+    private  String password;
 
     public String getEmail() {
         return email;

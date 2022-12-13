@@ -83,9 +83,8 @@ public class CartController {
    
     // delete a cart item for a user
 
-    @DeleteMapping("/delete/{cartItemId}")
-    public ResponseEntity<String> deleteCartItem(@PathVariable("cartItemId") Integer itemId,
-                                                      @RequestParam("token") String token) {
+    @DeleteMapping("/delete/")
+    public ResponseEntity<String> deleteCartItem(@RequestParam("token") String token) {
 
         // authenticate the token
         authenticationService.authenticate(token);
@@ -93,7 +92,7 @@ public class CartController {
         // find the user
         User user = authenticationService.getUser(token);
 
-        cartService.deleteCartItem(itemId, user);
+        cartService.deleteCartItem(user);
 
         return new ResponseEntity<>("Item has been removed", HttpStatus.OK);
 

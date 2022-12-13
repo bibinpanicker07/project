@@ -82,23 +82,9 @@ public class CartService {
         return  cartDto;
     }
 
-    public void deleteCartItem(Integer cartItemId, User user) {
-        // the item id belongs to user
-
-        Optional<Cart> optionalCart = cartRepository.findById(cartItemId);
-
-        if (optionalCart.isEmpty()) {
-            throw new CustomException("cart item id is invalid: " + cartItemId);
-        }
-
-        Cart cart = optionalCart.get();
-
-        if (cart.getUser() != user) {
-            throw  new CustomException("cart item does not belong to user: " +cartItemId);
-        }
-
-        cartRepository.delete(cart);
-
-
+    public void deleteCartItem(User user) {
+    	List<Cart> cartList =  cartRepository.findByUser(user);
+        for(Cart temp:cartList) 
+        	cartRepository.delete(temp);
     }
 }

@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,16 +23,16 @@ public class User {
     private Integer id;
 
     @Column(name = "first_name")
-    private String firstName;
+    private @NotBlank String firstName;
 
     @Column(name = "last_name")
-    private String lastName;
+    private @NotBlank String lastName;
 
     @Column(name = "email")
-    private String email;
+    private @NotBlank String email;
 
     @Column(name = "password")
-    private String password;
+    private @NotBlank String password;
     
     @JsonIgnore
     @OneToMany(mappedBy = "user",

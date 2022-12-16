@@ -1,5 +1,7 @@
 package com.axis.projectBackend.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,12 +31,15 @@ public class OrderDetailService {
 				ORDER_PLACED,
 				cartService.listCartItems(user).getTotalCost(),
 				user,
-				cartService.cartRepository.findAllByUserOrderByCreatedDateDesc(user));
+				cartService.cartRepository.findAllByUserOrderByCreatedDateDesc(user),
+				orderDetailDto.getTransactionId());
 		
 		orderDetailRepository.save(orderDetail);
 		//cartService.cartRepository.deleteAllByUser(user);		
 	}
 	
-	
+	public List<OrderDetail> getOrders(User user) {
+        return orderDetailRepository.findByUser(user);    
+    }
 
 }

@@ -66,7 +66,7 @@ public class CartService {
     }
 
     public CartDto listCartItems(User user) {
-        List<Cart> cartList = cartRepository.findAllByUserOrderByCreatedDateDesc(user);
+        List<Cart> cartList = cartRepository.findByUser(user);
 
         List<CartItemDto> cartItems = new ArrayList<>();
         double totalCost = 0;

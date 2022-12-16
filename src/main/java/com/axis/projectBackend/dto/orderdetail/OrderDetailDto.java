@@ -8,12 +8,22 @@ public class OrderDetailDto {
 	private String fullAddress;
 	private String contactNumber;
 	private CartDto checkOut;
-	public OrderDetailDto(String fullName, String fullAddress, String contactNumber, CartDto checkOut) {
+	private String transactionId;
+	
+	public OrderDetailDto(String fullName, String fullAddress, String contactNumber, CartDto checkOut,
+			String transactionId) {
 		super();
 		this.fullName = fullName;
 		this.fullAddress = fullAddress;
 		this.contactNumber = contactNumber;
 		this.checkOut = checkOut;
+		this.transactionId = transactionId;
+	}
+	public String getTransactionId() {
+		return transactionId;
+	}
+	public void setTransactionId(String transactionId) {
+		this.transactionId = transactionId;
 	}
 	public String getFullName() {
 		return fullName;

@@ -27,6 +27,7 @@ public class OrderDetail {
 	private String orderContactNumber;
 	private String orderStatus;
 	private Double orderAmount;
+	private String transactionId;
 	@ManyToOne()
     @JsonIgnore
     @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -90,8 +91,14 @@ public class OrderDetail {
 	
 
 	
+	public String getTransactionId() {
+		return transactionId;
+	}
+	public void setTransactionId(String transactionId) {
+		this.transactionId = transactionId;
+	}
 	public OrderDetail(String orderFullName, String orderFullAddress, String orderContactNumber, String orderStatus,
-			Double orderAmount, User user, List<Cart> carts) {
+			Double orderAmount,  User user, List<Cart> carts,String transactionId) {
 		super();
 		this.orderFullName = orderFullName;
 		this.orderFullAddress = orderFullAddress;
@@ -100,8 +107,9 @@ public class OrderDetail {
 		this.orderAmount = orderAmount;
 		this.user = user;
 		this.carts = carts;
+		this.transactionId = transactionId;
 	}
-
+	
 
 
 

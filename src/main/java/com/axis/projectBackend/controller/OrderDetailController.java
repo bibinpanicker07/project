@@ -3,8 +3,6 @@ package com.axis.projectBackend.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,22 +30,21 @@ public class OrderDetailController {
 	
 	
 	@PostMapping("/placeorder")
-	public ResponseEntity<String> placeOrder(@RequestBody OrderDetailDto orderdetaildto, @RequestParam("token") String token ) {
+	public void placeOrder(@RequestBody OrderDetailDto orderdetaildto, @RequestParam("token") String token ) {
 
         authenticationService.authenticate(token);
         User user = authenticationService.getUser(token);
 		
 		orderDetailService.placeOrder(orderdetaildto,user);
-		
-		return new ResponseEntity<String>("Order Placed",HttpStatus.OK);
 	}
+	
 	@GetMapping("/")
-    public List<OrderDetail> getOrderDetails(@RequestParam("token") String token){
-
-        authenticationService.authenticate(token);
+	public List<OrderDetail> getOrderDetails(@RequestParam("token") String token){
+		
+		authenticationService.authenticate(token);
         User user = authenticationService.getUser(token);
-
+        
         return orderDetailService.getOrders(user);
-    }
+	}
 
 }

@@ -36,18 +36,18 @@ public class Cart {
 
     private int quantity;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY, optional = true)
-    @JoinColumn(name = "order_detail_id", unique= true, nullable=true, insertable=true, updatable=true)
-    OrderDetail orderDetail;
+//    @JsonIgnore
+//    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+//    @JoinColumn(name = "order_detail_id", unique= true, nullable=true, insertable=true, updatable=true)
+//    OrderDetail orderDetail;
 
-    public OrderDetail getOrderDetail() {
-		return orderDetail;
-	}
-
-	public void setOrderDetail(OrderDetail orderDetail) {
-		this.orderDetail = orderDetail;
-	}
+//    public OrderDetail getOrderDetail() {
+//		return orderDetail;
+//	}
+//
+//	public void setOrderDetail(OrderDetail orderDetail) {
+//		this.orderDetail = orderDetail;
+//	}
 
 	public Cart() {
     }

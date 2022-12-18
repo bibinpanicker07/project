@@ -21,6 +21,7 @@ import com.axis.projectBackend.dto.cart.CartDto;
 import com.axis.projectBackend.entity.User;
 import com.axis.projectBackend.exceptions.AuthenticationFailException;
 import com.axis.projectBackend.exceptions.ProductNotExistsException;
+import com.axis.projectBackend.repository.OrderCartRepository;
 import com.axis.projectBackend.service.AuthenticationService;
 import com.axis.projectBackend.service.CartService;
 
@@ -35,7 +36,7 @@ public class CartController {
     @Autowired
     private AuthenticationService authenticationService;
 
-
+   
     // post cart api
     @PostMapping("/add")
     public ResponseEntity<String> addToCart(@RequestBody AddToCartDto addToCartDto,

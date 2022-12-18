@@ -8,8 +8,8 @@ import com.axis.projectBackend.entity.OrderDetail;
 import com.axis.projectBackend.entity.User;
 
 public interface OrderDetailRepository extends JpaRepository<OrderDetail,Integer>{
+
+	public List<OrderDetail> findByUser(User user);	
+	public List<OrderDetail> findAllByUserOrderByCreatedDateDesc(User user);
 	
-			List<OrderDetail> findByUser(User user);
-
-
 }

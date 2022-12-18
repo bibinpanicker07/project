@@ -1,6 +1,8 @@
 package com.axis.projectBackend.entity;
 
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotBlank;
 
 import com.axis.projectBackend.dto.cart.CartDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -27,15 +28,23 @@ public class OrderDetail {
 	private String orderContactNumber;
 	private String orderStatus;
 	private Double orderAmount;
-	private String transactionId;
+	private Date createdDate;
+	private LocalDate date;
+	
+	//ADD TRANCASTION IDDDDDDDDDDDD
 	@ManyToOne()
     @JsonIgnore
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
+//	 @JsonIgnore
+//	 @OneToMany(mappedBy = "orderDetail", fetch = FetchType.LAZY)
+//	 private List<Cart> carts;
 	 @JsonIgnore
-	 @OneToMany(mappedBy = "orderDetail", fetch = FetchType.LAZY)
-	 private List<Cart> carts;
+	 @OneToMany
+	 @JoinColumn(name="fk_order")
+	 private List<OrderCart> oCarts;
+	 
 
 
 	public OrderDetail() {
@@ -82,23 +91,30 @@ public class OrderDetail {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public List<Cart> getCarts() {
-		return carts;
+	public List<OrderCart> getOCarts() {
+		return oCarts;
 	}
-	public void setCarts(List<Cart> carts) {
-		this.carts = carts;
+	public void setOCarts(List<OrderCart> oCarts) {
+		this.oCarts = oCarts;
 	}
 	
 
 	
-	public String getTransactionId() {
-		return transactionId;
+	public Date getCreatedDate() {
+		return createdDate;
 	}
-	public void setTransactionId(String transactionId) {
-		this.transactionId = transactionId;
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+	
+	public LocalDate getDate() {
+		return date;
+	}
+	public void setDate(LocalDate date) {
+		this.date = date;
 	}
 	public OrderDetail(String orderFullName, String orderFullAddress, String orderContactNumber, String orderStatus,
-			Double orderAmount,  User user, List<Cart> carts,String transactionId) {
+			Double orderAmount, User user,List<OrderCart> oCarts,Date createdDate,LocalDate date) {
 		super();
 		this.orderFullName = orderFullName;
 		this.orderFullAddress = orderFullAddress;
@@ -106,10 +122,11 @@ public class OrderDetail {
 		this.orderStatus = orderStatus;
 		this.orderAmount = orderAmount;
 		this.user = user;
-		this.carts = carts;
-		this.transactionId = transactionId;
+		this.oCarts = oCarts;
+		this.createdDate=createdDate;
+		this.date=date;
 	}
-	
+
 
 
 

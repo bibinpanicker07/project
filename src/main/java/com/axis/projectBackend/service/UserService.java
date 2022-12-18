@@ -65,9 +65,9 @@ public class UserService {
 
         authenticationService.saveConfirmationToken(authenticationToken);
         
-        //create empty order for user
-        OrderDetail orderDetail = new OrderDetail(user);
-        orderDetailRepository.save(orderDetail);
+//        //create empty order for user
+//        OrderDetail orderDetail = new OrderDetail(user);
+//        orderDetailRepository.save(orderDetail);
         
         
         return  new ResponseEntity<String>("user created succesfully",HttpStatus.CREATED);

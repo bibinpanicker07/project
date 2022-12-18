@@ -1,5 +1,6 @@
 package com.axis.projectBackend.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,10 +13,13 @@ import com.axis.projectBackend.dto.cart.AddToCartDto;
 import com.axis.projectBackend.dto.cart.CartDto;
 import com.axis.projectBackend.dto.cart.CartItemDto;
 import com.axis.projectBackend.entity.Cart;
+import com.axis.projectBackend.entity.OrderCart;
 import com.axis.projectBackend.entity.Product;
 import com.axis.projectBackend.entity.User;
 import com.axis.projectBackend.exceptions.CustomException;
 import com.axis.projectBackend.repository.CartRepository;
+import com.axis.projectBackend.repository.OrderCartRepository;
+import com.axis.projectBackend.repository.OrderDetailRepository;
 
 @Service
 public class CartService {
@@ -25,6 +29,12 @@ public class CartService {
 
     @Autowired
     CartRepository cartRepository;
+    
+    @Autowired
+    private OrderCartRepository orderCartRepository;
+    
+//    @Autowired 
+//    private OrderDetailRepository orderDetailRepository;
 
     public void addToCart(AddToCartDto addToCartDto, User user) {
 
@@ -83,8 +93,17 @@ public class CartService {
     }
 
     public void deleteCartItem(User user) {
-    	List<Cart> cartList =  cartRepository.findByUser(user);
-        for(Cart temp:cartList) 
-        	cartRepository.delete(temp);
+    	Date date = new Date();
+        List<Cart> cartList =  cartRepository.findByUser(user);
+        for(Cart temp:cartList) {
+        	OrderCart ocart = new OrderCart(
+        			date,
+        			temp.getProduct(),
+        			user,
+        			temp.getQuantity());
+        	orderCartRepository.save(ocart);
+            cartRepository.delete(temp);
+            
+        }
     }
 }

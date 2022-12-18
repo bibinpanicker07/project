@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.axis.projectBackend.entity.Category;
+import com.axis.projectBackend.entity.User;
 import com.axis.projectBackend.repository.CategoryRepository;
 
 import java.util.List;
@@ -20,11 +21,11 @@ public class CategoryService {
 		return categoryrepository.findAll();
 	}
 
-//	public void createCategory(Category category) {
-//		categoryrepository.save(category);
-//	}
+	public void createCategory(Category category) {
+		categoryrepository.save(category);
+	}
 
-	public Category readCategory(String categoryName) {
+	public Category readCategoryByName(String categoryName) {
 		return categoryrepository.findByCategoryName(categoryName);
 	}
 
@@ -32,11 +33,11 @@ public class CategoryService {
 		return categoryrepository.findById(categoryId);
 	}
 
-//	public void updateCategory(Integer categoryID, Category newCategory) {
-//		Category category = categoryrepository.findById(categoryID).get();
-//		category.setCategoryName(newCategory.getCategoryName());
-//		category.setDescription(newCategory.getDescription());
-//		category.setImageUrl(newCategory.getImageUrl());
-//		categoryrepository.save(category);
-//	}
+	public void updateCategory(Integer categoryID, Category newCategory) {
+		Category category = categoryrepository.findById(categoryID).get();
+		category.setCategoryName(newCategory.getCategoryName());
+		category.setDescription(newCategory.getDescription());
+		category.setImageUrl(newCategory.getImageUrl());
+		categoryrepository.save(category);
+	}
 }

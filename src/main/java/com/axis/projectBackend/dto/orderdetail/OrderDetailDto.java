@@ -1,29 +1,37 @@
 package com.axis.projectBackend.dto.orderdetail;
 
-import com.axis.projectBackend.dto.cart.CartDto;
+import java.util.List;
+
+import com.axis.projectBackend.entity.OrderCart;
 
 public class OrderDetailDto {
 	
 	private String fullName;
 	private String fullAddress;
 	private String contactNumber;
-	private CartDto checkOut;
-	private String transactionId;
+	private Double amount;
+	 private List<OrderCart> ocarts;
 	
-	public OrderDetailDto(String fullName, String fullAddress, String contactNumber, CartDto checkOut,
-			String transactionId) {
+	public OrderDetailDto(String fullName, String fullAddress, String contactNumber, Double amount,
+			List<OrderCart> ocarts) {
 		super();
 		this.fullName = fullName;
 		this.fullAddress = fullAddress;
 		this.contactNumber = contactNumber;
-		this.checkOut = checkOut;
-		this.transactionId = transactionId;
+		this.amount = amount;
+		this.ocarts = ocarts;
 	}
-	public String getTransactionId() {
-		return transactionId;
+	public Double getAmount() {
+		return amount;
 	}
-	public void setTransactionId(String transactionId) {
-		this.transactionId = transactionId;
+	public void setAmount(Double amount) {
+		this.amount = amount;
+	}
+	public List<OrderCart> getOcarts() {
+		return ocarts;
+	}
+	public void setOcarts(List<OrderCart> ocarts) {
+		this.ocarts = ocarts;
 	}
 	public String getFullName() {
 		return fullName;
@@ -43,12 +51,7 @@ public class OrderDetailDto {
 	public void setContactNumber(String contactNumber) {
 		this.contactNumber = contactNumber;
 	}
-	public CartDto getCheckOut() {
-		return checkOut;
-	}
-	public void setCheckOut(CartDto checkOut) {
-		this.checkOut = checkOut;
-	}
+
 	
   
 }

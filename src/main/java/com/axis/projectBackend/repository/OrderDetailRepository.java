@@ -11,5 +11,6 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail,Integer
 
 	public List<OrderDetail> findByUser(User user);	
 	public List<OrderDetail> findAllByUserOrderByCreatedDateDesc(User user);
+	public List<OrderDetail> findAllByOrderByCreatedDateDesc();
 	
 }

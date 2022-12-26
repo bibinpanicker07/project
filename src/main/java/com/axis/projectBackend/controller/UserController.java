@@ -21,14 +21,23 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    public UserService getUserService() {
+		return userService;
+	}
 
-    // signup
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
 
+	public UserController() {
+		super();
+	}
+
+	// signup
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody SignupDto signupDto) {
         return userService.signUp(signupDto);
     }
-
 
     // signin
 

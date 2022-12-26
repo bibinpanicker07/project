@@ -48,7 +48,9 @@ public class OrderDetailService {
 	public List<OrderDetail> getOrders(User user) {
 		return orderDetailRepository.findAllByUserOrderByCreatedDateDesc(user)	;
 	}
-	
+	public List<OrderDetail> getAllOrders() {
+        return orderDetailRepository.findAllByOrderByCreatedDateDesc()    ;
+    }
 	
 
 }

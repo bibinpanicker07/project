@@ -47,4 +47,11 @@ public class OrderDetailController {
         return orderDetailService.getOrders(user);
 	}
 
+	@GetMapping("/AllOrders")
+    public List<OrderDetail> getAllOrderDetails(@RequestParam("token") String token){
+
+        authenticationService.authenticate(token);
+
+        return orderDetailService.getAllOrders();
+    }
 }

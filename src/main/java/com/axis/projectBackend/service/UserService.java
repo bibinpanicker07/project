@@ -49,11 +49,11 @@ public class UserService {
         try {
             encryptedpassword = hashPassword(signupDto.getPassword());
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
 
         User user = new User(signupDto.getFirstName(), signupDto.getLastName(),
-                signupDto.getEmail(), encryptedpassword);
+                signupDto.getEmail(), encryptedpassword, "customer");
 
         userRepository.save(user);
 
@@ -98,7 +98,7 @@ public class UserService {
                 throw new AuthenticationFailException("wrong password");
             }
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
 
         // compare the password in DB
@@ -113,7 +113,7 @@ public class UserService {
             throw new CustomException("token is not present");
         }
 
-        return new SignInResponseDto("sucess", token.getToken());
+        return new SignInResponseDto("sucess", token.getToken(),user.getRole());
 
         // return response
     }

@@ -27,6 +27,7 @@ import java.util.Optional;
 @CrossOrigin("http://localhost:3000")
 public class CategoryController {
 
+	
 	@Autowired
 	private CategoryService categoryService;
 

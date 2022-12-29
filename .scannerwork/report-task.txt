@@ -1,6 +1,6 @@
-projectKey=egroceries
+projectKey=newgroceries
 serverUrl=http://localhost:9000
 serverVersion=9.7.1.62043
-dashboardUrl=http://localhost:9000/dashboard?id=egroceries
-ceTaskId=AYUqHg4nHuGrSCIPgjD3
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYUqHg4nHuGrSCIPgjD3
+dashboardUrl=http://localhost:9000/dashboard?id=newgroceries
+ceTaskId=AYVeLA46K88jh1dUxtMh
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYVeLA46K88jh1dUxtMh

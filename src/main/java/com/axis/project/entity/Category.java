@@ -39,6 +39,15 @@ public class Category {
 	
 	public Category() {
 	}
+	public Category(Integer id, @NotBlank String categoryName, @NotBlank String description, @NotBlank String imageUrl,
+			Set<Product> products) {
+		super();
+		this.id = id;
+		this.categoryName = categoryName;
+		this.description = description;
+		this.imageUrl = imageUrl;
+		this.products = products;
+	}
 
 	public Category(@NotBlank String categoryName, @NotBlank String description) {
 		this.categoryName = categoryName;
